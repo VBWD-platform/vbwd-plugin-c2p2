@@ -1,0 +1,52 @@
+{
+  "sandbox": {
+    "type": "boolean",
+    "default": true,
+    "description": "Use 2C2P sandbox (test) environment"
+  },
+  "test_merchant_id": {
+    "type": "string",
+    "default": "",
+    "description": "2C2P sandbox merchantID (e.g. JT01)"
+  },
+  "test_secret_key": {
+    "type": "string",
+    "default": "",
+    "description": "2C2P sandbox secret key used to sign JWS"
+  },
+  "test_api_url": {
+    "type": "string",
+    "default": "https://sandbox-pgw.2c2p.com/payment/4.3",
+    "description": "2C2P sandbox PGW v4 base URL"
+  },
+  "live_merchant_id": {
+    "type": "string",
+    "default": "",
+    "description": "2C2P live merchantID"
+  },
+  "live_secret_key": {
+    "type": "string",
+    "default": "",
+    "description": "2C2P live secret key used to sign JWS"
+  },
+  "live_api_url": {
+    "type": "string",
+    "default": "https://pgw.2c2p.com/payment/4.3",
+    "description": "2C2P live PGW v4 base URL"
+  },
+  "enabled_methods": {
+    "type": "array",
+    "default": ["CC", "PROMPTPAY", "PAYNOW", "DUITNOW", "QRIS", "GCASH", "MOMO", "SHOPEEPAY", "TRUEMONEY", "ALIPAY", "WECHATPAY", "FPX"],
+    "description": "2C2P paymentChannel allow-list surfaced to the checkout UI"
+  },
+  "default_currency": {
+    "type": "string",
+    "default": "THB",
+    "description": "Default currency offered to the user"
+  },
+  "allowed_currencies": {
+    "type": "array",
+    "default": ["THB", "SGD", "MYR", "PHP", "VND", "IDR", "HKD", "TWD", "USD"],
+    "description": "Currencies this merchant may charge in"
+  }
+}

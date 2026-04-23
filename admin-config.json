@@ -1,0 +1,38 @@
+{
+  "tabs": [
+    {
+      "id": "mode",
+      "label": "Mode",
+      "fields": [
+        { "key": "sandbox", "label": "Sandbox (test) mode", "component": "checkbox" }
+      ]
+    },
+    {
+      "id": "test-credentials",
+      "label": "Sandbox credentials",
+      "fields": [
+        { "key": "test_merchant_id", "label": "Merchant ID", "component": "input", "inputType": "text" },
+        { "key": "test_secret_key", "label": "Secret key", "component": "input", "inputType": "password" },
+        { "key": "test_api_url", "label": "API base URL", "component": "input", "inputType": "text" }
+      ]
+    },
+    {
+      "id": "live-credentials",
+      "label": "Live credentials",
+      "fields": [
+        { "key": "live_merchant_id", "label": "Merchant ID", "component": "input", "inputType": "text" },
+        { "key": "live_secret_key", "label": "Secret key", "component": "input", "inputType": "password" },
+        { "key": "live_api_url", "label": "API base URL", "component": "input", "inputType": "text" }
+      ]
+    },
+    {
+      "id": "methods",
+      "label": "Payment methods",
+      "fields": [
+        { "key": "enabled_methods", "label": "Enabled methods", "component": "multiselect", "options": ["CC", "PROMPTPAY", "PAYNOW", "DUITNOW", "QRIS", "GCASH", "MOMO", "SHOPEEPAY", "TRUEMONEY", "ALIPAY", "WECHATPAY", "FPX"] },
+        { "key": "default_currency", "label": "Default currency", "component": "select", "options": ["THB", "SGD", "MYR", "PHP", "VND", "IDR", "HKD", "TWD", "USD"] },
+        { "key": "allowed_currencies", "label": "Allowed currencies", "component": "multiselect", "options": ["THB", "SGD", "MYR", "PHP", "VND", "IDR", "HKD", "TWD", "USD"] }
+      ]
+    }
+  ]
+}
