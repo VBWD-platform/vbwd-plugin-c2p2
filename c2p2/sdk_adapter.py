@@ -138,9 +138,7 @@ class C2P2SDKAdapter(BaseSDKAdapter):
         }
         return self._post_jwt("/payment/cancel", payload)
 
-    def verify_backend_notification(
-        self, payload: bytes, signature: str
-    ) -> bool:
+    def verify_backend_notification(self, payload: bytes, signature: str) -> bool:
         """Verify the 2C2P Backend Notification signature.
 
         The BN arrives as a form-urlencoded body where the `paymentResponse`
@@ -170,16 +168,12 @@ class C2P2SDKAdapter(BaseSDKAdapter):
                     timeout=30,
                 )
             except requests.RequestException as exc:
-                return SDKResponse(
-                    success=False, error=f"network: {exc}"
-                )
+                return SDKResponse(success=False, error=f"network: {exc}")
 
             if resp.status_code >= 500:
                 return SDKResponse(
                     success=False,
-                    error=(
-                        f"2C2P returned {resp.status_code}: {resp.text[:200]}"
-                    ),
+                    error=(f"2C2P returned {resp.status_code}: {resp.text[:200]}"),
                 )
 
             decoded = self._decode_jws(resp.text)
@@ -206,9 +200,7 @@ class C2P2SDKAdapter(BaseSDKAdapter):
     def _sign_jws(self, payload: Dict[str, Any]) -> str:
         header = {"alg": "HS256", "typ": "JWT"}
         header_b64 = _b64url(json.dumps(header, separators=(",", ":")).encode())
-        payload_b64 = _b64url(
-            json.dumps(payload, separators=(",", ":")).encode()
-        )
+        payload_b64 = _b64url(json.dumps(payload, separators=(",", ":")).encode())
         signing_input = f"{header_b64}.{payload_b64}"
         signature = self._hs256(signing_input)
         return f"{signing_input}.{signature}"

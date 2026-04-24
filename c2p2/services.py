@@ -75,7 +75,9 @@ class C2P2Service:
             .one_or_none()
         )
         if tx is None:
-            tx = C2P2Transaction(invoice_no=invoice_no, amount=Decimal("0"), currency="")
+            tx = C2P2Transaction(
+                invoice_no=invoice_no, amount=Decimal("0"), currency=""
+            )
         return tx
 
 

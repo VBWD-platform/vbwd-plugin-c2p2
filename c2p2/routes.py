@@ -134,9 +134,7 @@ def refund_payment(invoice_no: str):
 
     plugin = _get_plugin()
     adapter = plugin._get_adapter()
-    response = adapter.refund_payment(
-        payment_intent_id=invoice_no, amount=amount
-    )
+    response = adapter.refund_payment(payment_intent_id=invoice_no, amount=amount)
     if not response.success:
         return (
             jsonify({"error": response.error or "2C2P error"}),

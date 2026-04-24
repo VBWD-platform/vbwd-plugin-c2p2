@@ -17,10 +17,7 @@ class TestC2P2Plugin:
 
         assert plugin.status == PluginStatus.INITIALIZED
         assert plugin._config["test_merchant_id"] == "JT01"
-        assert (
-            plugin._config["default_currency"]
-            == DEFAULT_CONFIG["default_currency"]
-        )
+        assert plugin._config["default_currency"] == DEFAULT_CONFIG["default_currency"]
 
     def test_url_prefix(self):
         plugin = C2P2Plugin()

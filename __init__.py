@@ -110,15 +110,11 @@ class C2P2Plugin(PaymentProviderPlugin):
         config_store = current_app.config_store
         config = config_store.get_config("c2p2")
         prefix = "test_" if config.get("sandbox", True) else "live_"
-        api_key = config.get(f"{prefix}secret_key") or config.get(
-            "secret_key", ""
-        )
+        api_key = config.get(f"{prefix}secret_key") or config.get("secret_key", "")
         return C2P2SDKAdapter(
             SDKConfig(api_key=api_key, sandbox=config.get("sandbox", True)),
             merchant_id=config.get(f"{prefix}merchant_id", ""),
-            api_url=config.get(
-                f"{prefix}api_url", DEFAULT_CONFIG[f"{prefix}api_url"]
-            ),
+            api_url=config.get(f"{prefix}api_url", DEFAULT_CONFIG[f"{prefix}api_url"]),
         )
 
     def create_payment_intent(

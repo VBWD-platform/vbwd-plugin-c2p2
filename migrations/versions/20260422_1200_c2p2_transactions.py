@@ -32,7 +32,9 @@ def upgrade() -> None:
         sa.Column("amount", sa.Numeric(14, 2), nullable=False),
         sa.Column("currency", sa.String(length=3), nullable=False),
         sa.Column("channel_code", sa.String(length=32), nullable=True),
-        sa.Column("status", sa.String(length=24), nullable=False, server_default="pending"),
+        sa.Column(
+            "status", sa.String(length=24), nullable=False, server_default="pending"
+        ),
         sa.Column("last_resp_code", sa.String(length=8), nullable=True),
         sa.Column("extra_data", sa.JSON(), nullable=True),
         sa.Column(
