@@ -1,12 +1,11 @@
 """2C2P payment transaction model."""
-from datetime import datetime, timezone
-
-from sqlalchemy import Column, DateTime, Numeric, String
+from sqlalchemy import Column, Numeric, String
 
 from vbwd.extensions import db
+from vbwd.models.base import TzAwareTimestampMixin
 
 
-class C2P2Transaction(db.Model):
+class C2P2Transaction(TzAwareTimestampMixin, db.Model):
     """Mirror of a 2C2P payment for reconciliation + audit.
 
     One row per invoice; the payment token rotates if the user retries.
@@ -25,17 +24,7 @@ class C2P2Transaction(db.Model):
     status = Column(String(24), nullable=False, default="pending")
     last_resp_code = Column(String(8), nullable=True)
     extra_data = Column(db.JSON, nullable=True)
-    created_at = Column(
-        DateTime(timezone=True),
-        nullable=False,
-        default=lambda: datetime.now(timezone.utc),
-    )
-    updated_at = Column(
-        DateTime(timezone=True),
-        nullable=False,
-        default=lambda: datetime.now(timezone.utc),
-        onupdate=lambda: datetime.now(timezone.utc),
-    )
+    # created_at / updated_at provided by TzAwareTimestampMixin (S20).
 
     def to_dict(self) -> dict:
         return {
