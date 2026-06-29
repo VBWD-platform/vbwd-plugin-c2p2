@@ -62,7 +62,7 @@ class C2P2Plugin(PaymentProviderPlugin):
     def metadata(self) -> PluginMetadata:
         return PluginMetadata(
             name="c2p2",
-            version="1.0.0",
+            version="26.6",
             author="VBWD Team",
             description=(
                 "2C2P Payment Gateway v4 — ASEAN cards, QR, and regional "
