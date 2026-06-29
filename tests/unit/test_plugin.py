@@ -9,7 +9,7 @@ class TestC2P2Plugin:
         plugin = C2P2Plugin()
         meta = plugin.metadata
         assert meta.name == "c2p2"
-        assert meta.version == "26.6"
+        assert meta.version == "26.6.1"
 
     def test_initialize_merges_defaults(self):
         plugin = C2P2Plugin()
