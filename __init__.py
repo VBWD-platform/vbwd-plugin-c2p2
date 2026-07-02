@@ -3,7 +3,7 @@ from typing import Optional, Dict, Any, TYPE_CHECKING
 from decimal import Decimal
 from uuid import UUID
 
-from vbwd.plugins.base import PluginMetadata
+from vbwd.plugins.base import PluginMetadata, PublicRouteDeclaration
 from vbwd.plugins.payment_provider import (
     PaymentProviderPlugin,
     PaymentResult,
@@ -77,6 +77,14 @@ class C2P2Plugin(PaymentProviderPlugin):
         if config:
             merged.update(config)
         super().initialize(merged)
+
+    def declare_public_routes(self) -> PublicRouteDeclaration:
+        """Public C2P2 backend notification webhook (signature-verified in handler)."""
+        return PublicRouteDeclaration(
+            mutation={
+                "/api/v1/plugins/c2p2/backend-notifications": "C2P2 backend notification; signature-verified.",
+            },
+        )
 
     def get_blueprint(self) -> Optional["Blueprint"]:
         from plugins.c2p2.c2p2.routes import c2p2_plugin_bp
